@@ -10,6 +10,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'nosso-blue': {
+                50: '#f0f7ff',
+                100: '#e0f0ff',
+                200: '#c0e0ff',
+                300: '#90c8ff',
+                400: '#60a8ff',
+                500: '#3b82f6',
+                600: '#1e64d0',
+                700: '#1e4cab',
+                800: '#1e40af',
+                900: '#172554',
+              },
+              'nosso-yellow': {
+                300: '#fde68a',
+                400: '#facc15',
+                500: '#eab308',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    
+    <style>
+      .gradient-blue-yellow {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #facc15 100%);
+      }
+      
+      .gradient-overlay {
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(250, 204, 21, 0.3) 100%);
+      }
+    </style>
 
     <meta property="og:title" content="Nosso Atacarejo - Os melhores preços da região" />
     <meta property="og:description" content="Nosso Atacarejo - Há mais de 15 anos oferecendo os melhores preços em atacado e varejo. Lojas em Limoeiro do Norte-CE, Pau dos Ferros-RN e São Miguel-RN." />
@@ -21,10 +64,697 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
   </head>
 
-  <body>
-    <div id="root"></div>
+  <body class="font-sans">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-nosso-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2" />
+              </svg>
+              <div class="absolute -top-1 -right-1 w-3 h-3 bg-nosso-yellow-300 rounded-full animate-pulse"></div>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xl font-bold text-nosso-blue-800">NOSSO</span>
+              <span class="text-xs text-nosso-blue-600 -mt-1">ATACAREJO</span>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden lg:flex bg-white rounded-full shadow-lg px-6 py-2">
+            <div class="flex space-x-6">
+              <a href="#ofertas" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Ofertas
+              </a>
+              <a href="#localizacao" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Nossas lojas
+              </a>
+              <a href="#sobre" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Nossa história
+              </a>
+              <a href="#contato" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Trabalhe conosco
+              </a>
+              <a href="#contato" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Fale conosco
+              </a>
+            </div>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button id="menuBtn" class="lg:hidden text-nosso-blue-700 hover:text-nosso-blue-900 p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobileMenu" class="hidden lg:hidden mt-4 bg-white rounded-lg shadow-lg p-4">
+          <div class="flex flex-col space-y-3">
+            <a href="#ofertas" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Ofertas
+            </a>
+            <a href="#localizacao" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Nossas lojas
+            </a>
+            <a href="#sobre" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Nossa história
+            </a>
+            <a href="#contato" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Trabalhe conosco
+            </a>
+            <a href="#contato" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Fale conosco
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-28 lg:pt-32 pb-16 md:pb-24 bg-gradient-to-r from-nosso-blue-800 to-nosso-blue-600 text-white">
+      <div class="container mx-auto px-4 md:px-8">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="w-full md:w-1/2 order-2 md:order-1">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4">
+              <span class="text-nosso-yellow-400">Nosso Atacarejo</span>, 
+              <br />o melhor para o seu dia a dia
+            </h1>
+            <p class="text-lg opacity-90 mb-8">
+              Há mais de 15 anos oferecendo os melhores preços em atacado e varejo em toda nossa região.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#ofertas" class="inline-flex items-center justify-center bg-nosso-yellow-400 hover:bg-nosso-yellow-500 text-nosso-blue-900 font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                Ver ofertas
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+              <a href="#localizacao" class="inline-flex items-center justify-center border border-white hover:bg-white/10 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
+                Nossas lojas
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 mb-8 md:mb-0 order-1 md:order-2 flex justify-center md:justify-end">
+            <div class="w-full max-w-lg relative">
+              <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Nosso Atacarejo" class="rounded-lg shadow-xl w-full h-auto object-cover" />
+              <div class="absolute inset-0 rounded-lg shadow-inner gradient-overlay opacity-30"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl font-bold text-nosso-blue-800 mb-4">Nossa História</h2>
+          <div class="w-24 h-1 bg-nosso-yellow-400 mx-auto mb-6"></div>
+          <p class="text-lg text-gray-700">
+            Conheça a história de como o Nosso Atacarejo se tornou referência em preços baixos e qualidade na região.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Nossa história" class="rounded-lg shadow-lg" />
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-nosso-blue-700 mb-4">De uma pequena mercearia ao maior atacarejo da região</h3>
+            <p class="text-gray-700 mb-4">
+              Fundado em 2008, o Nosso Atacarejo começou como uma pequena mercearia familiar em Limoeiro do Norte-CE. Com o compromisso de oferecer produtos de qualidade a preços justos, rapidamente nos tornamos uma referência na região.
+            </p>
+            <p class="text-gray-700 mb-4">
+              Em 2015, expandimos para Pau dos Ferros-RN, e em 2019 abrimos nossa terceira unidade em São Miguel-RN. Nossa missão continua a mesma desde o primeiro dia: oferecer a melhor experiência de compra com os melhores preços.
+            </p>
+            <div class="grid grid-cols-3 gap-4 mt-8">
+              <div class="text-center">
+                <div class="text-nosso-blue-700 font-bold text-4xl">15+</div>
+                <p class="text-gray-600">Anos de história</p>
+              </div>
+              <div class="text-center">
+                <div class="text-nosso-blue-700 font-bold text-4xl">3</div>
+                <p class="text-gray-600">Lojas</p>
+              </div>
+              <div class="text-center">
+                <div class="text-nosso-blue-700 font-bold text-4xl">300+</div>
+                <p class="text-gray-600">Colaboradores</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="ofertas" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-nosso-blue-600 font-semibold mb-2 block">ECONOMIA GARANTIDA</span>
+          <h2 class="text-3xl font-bold text-nosso-blue-800 mb-4">Ofertas da Semana</h2>
+          <div class="w-24 h-1 bg-nosso-yellow-400 mx-auto mb-6"></div>
+          <p class="text-lg text-gray-700">
+            Aproveite as melhores ofertas em todos os departamentos e economize em suas compras do dia a dia.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Offer 1 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1581931798261-b1a88747b9d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Arroz" class="w-full h-48 object-cover" />
+              <div class="absolute top-0 right-0 bg-nosso-yellow-400 text-nosso-blue-900 font-bold px-4 py-1 rounded-bl-lg">
+                -20%
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-800">Arroz Branco Tipo 1</h3>
+              <p class="text-sm text-gray-500">Pacote 5kg</p>
+              <div class="mt-4 flex items-end">
+                <span class="text-xs line-through text-gray-500 mr-1">R$ 24,90</span>
+                <span class="text-2xl font-bold text-nosso-blue-700">R$ 19,90</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Offer 2 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1593280405106-e438532ea0c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Açúcar" class="w-full h-48 object-cover" />
+              <div class="absolute top-0 right-0 bg-nosso-yellow-400 text-nosso-blue-900 font-bold px-4 py-1 rounded-bl-lg">
+                -15%
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-800">Açúcar Refinado</h3>
+              <p class="text-sm text-gray-500">Pacote 1kg</p>
+              <div class="mt-4 flex items-end">
+                <span class="text-xs line-through text-gray-500 mr-1">R$ 5,99</span>
+                <span class="text-2xl font-bold text-nosso-blue-700">R$ 4,99</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Offer 3 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1587825045890-2891af61f9b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Café" class="w-full h-48 object-cover" />
+              <div class="absolute top-0 right-0 bg-nosso-yellow-400 text-nosso-blue-900 font-bold px-4 py-1 rounded-bl-lg">
+                -25%
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-800">Café Especial</h3>
+              <p class="text-sm text-gray-500">Pacote 500g</p>
+              <div class="mt-4 flex items-end">
+                <span class="text-xs line-through text-gray-500 mr-1">R$ 19,90</span>
+                <span class="text-2xl font-bold text-nosso-blue-700">R$ 14,90</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Offer 4 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1565548058679-92505e984072?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Feijão" class="w-full h-48 object-cover" />
+              <div class="absolute top-0 right-0 bg-nosso-yellow-400 text-nosso-blue-900 font-bold px-4 py-1 rounded-bl-lg">
+                -18%
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-800">Feijão Carioca</h3>
+              <p class="text-sm text-gray-500">Pacote 1kg</p>
+              <div class="mt-4 flex items-end">
+                <span class="text-xs line-through text-gray-500 mr-1">R$ 8,90</span>
+                <span class="text-2xl font-bold text-nosso-blue-700">R$ 7,29</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <a href="#" class="inline-flex items-center justify-center bg-nosso-blue-600 hover:bg-nosso-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+            Ver todas as ofertas
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl font-bold text-nosso-blue-800 mb-4">Por que escolher o Nosso Atacarejo?</h2>
+          <div class="w-24 h-1 bg-nosso-yellow-400 mx-auto mb-6"></div>
+          <p class="text-lg text-gray-700">
+            Oferecemos a melhor experiência de compra com preços imbatíveis e um atendimento diferenciado
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Benefit 1 -->
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 bg-nosso-blue-100 text-nosso-blue-700 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-nosso-blue-800 mb-2">Preços Imbatíveis</h3>
+            <p class="text-gray-600">
+              Oferecemos os melhores preços da região tanto para atacado quanto para varejo.
+            </p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 bg-nosso-blue-100 text-nosso-blue-700 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-nosso-blue-800 mb-2">Qualidade Garantida</h3>
+            <p class="text-gray-600">
+              Selecionamos cuidadosamente todos os produtos para garantir a melhor qualidade.
+            </p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 bg-nosso-blue-100 text-nosso-blue-700 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-nosso-blue-800 mb-2">Atendimento Diferenciado</h3>
+            <p class="text-gray-600">
+              Nossa equipe está sempre pronta para atender você com simpatia e eficiência.
+            </p>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 bg-nosso-blue-100 text-nosso-blue-700 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-nosso-blue-800 mb-2">Agilidade nas Compras</h3>
+            <p class="text-gray-600">
+              Ambientes amplos e organizados para que suas compras sejam rápidas e práticas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="localizacao" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl font-bold text-nosso-blue-800 mb-4">Nossas Lojas</h2>
+          <div class="w-24 h-1 bg-nosso-yellow-400 mx-auto mb-6"></div>
+          <p class="text-lg text-gray-700">
+            Visite uma de nossas unidades e aproveite as melhores ofertas.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Location 1 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15884.03099077242!2d-38.09915717844658!3d-5.149942656276707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7b963c757e81bd5%3A0xdb3a3e4f05d693d2!2sLimoeiro%20do%20Norte%2C%20CE!5e0!3m2!1spt-BR!2sbr!4v1649792984960!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-nosso-blue-700 text-xl mb-2">Limoeiro do Norte</h3>
+              <div class="flex items-start mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <address class="not-italic text-gray-600">
+                  Rua Principal, 123<br>
+                  Centro, Limoeiro do Norte - CE<br>
+                  CEP: 62930-000
+                </address>
+              </div>
+              <div class="flex items-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-gray-600">Segunda a Sábado: 8h às 20h<br>Domingo: 8h às 12h</p>
+              </div>
+              <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <p class="text-gray-600">(88) 3423-0000</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location 2 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15847.53748838248!2d-38.21405447838639!3d-6.112277458125474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7bb0a126a6702b7%3A0xdc20a0f158a274b7!2sPau%20dos%20Ferros%2C%20RN!5e0!3m2!1spt-BR!2sbr!4v1649793034227!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-nosso-blue-700 text-xl mb-2">Pau dos Ferros</h3>
+              <div class="flex items-start mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <address class="not-italic text-gray-600">
+                  Av. Independência, 456<br>
+                  Centro, Pau dos Ferros - RN<br>
+                  CEP: 59900-000
+                </address>
+              </div>
+              <div class="flex items-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-gray-600">Segunda a Sábado: 8h às 20h<br>Domingo: 8h às 12h</p>
+              </div>
+              <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <p class="text-gray-600">(84) 3351-0000</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location 3 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15826.26782255346!2d-38.50903507833973!3d-6.470185259023389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7b93170946201c3%3A0x11e89d4f72c0a636!2sS%C3%A3o%20Miguel%2C%20RN!5e0!3m2!1spt-BR!2sbr!4v1649793072931!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-nosso-blue-700 text-xl mb-2">São Miguel</h3>
+              <div class="flex items-start mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <address class="not-italic text-gray-600">
+                  Rua São João, 789<br>
+                  Centro, São Miguel - RN<br>
+                  CEP: 59920-000
+                </address>
+              </div>
+              <div class="flex items-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-gray-600">Segunda a Sábado: 8h às 20h<br>Domingo: 8h às 12h</p>
+              </div>
+              <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <p class="text-gray-600">(84) 3353-0000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl font-bold text-nosso-blue-800 mb-4">Fale Conosco</h2>
+          <div class="w-24 h-1 bg-nosso-yellow-400 mx-auto mb-6"></div>
+          <p class="text-lg text-gray-700">
+            Tire suas dúvidas, envie sugestões ou candidate-se para trabalhar conosco. Estamos à disposição para atendê-lo.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <form class="space-y-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome completo</label>
+                <input type="text" id="name" name="name" placeholder="Digite seu nome completo" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-nosso-blue-500 focus:border-nosso-blue-500" />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-nosso-blue-500 focus:border-nosso-blue-500" />
+              </div>
+              <div>
+                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Assunto</label>
+                <select id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-nosso-blue-500 focus:border-nosso-blue-500">
+                  <option value="">Selecione um assunto</option>
+                  <option value="duvida">Dúvida</option>
+                  <option value="sugestao">Sugestão</option>
+                  <option value="reclamacao">Reclamação</option>
+                  <option value="trabalhe-conosco">Trabalhe Conosco</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
+                <textarea id="message" name="message" rows="4" placeholder="Digite sua mensagem" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-nosso-blue-500 focus:border-nosso-blue-500"></textarea>
+              </div>
+              <div class="pt-2">
+                <button type="submit" class="w-full bg-nosso-blue-600 hover:bg-nosso-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+                  Enviar mensagem
+                </button>
+              </div>
+            </form>
+          </div>
+          
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-xl font-bold text-nosso-blue-700 mb-4">Nossos contatos</h3>
+              <div class="space-y-4">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-nosso-blue-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-sm font-medium text-gray-700">Telefone</h4>
+                    <p class="text-nosso-blue-700">(88) 3423-0000</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center">
+                  <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-nosso-blue-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-sm font-medium text-gray-700">E-mail</h4>
+                    <p class="text-nosso-blue-700">contato@nossoatacarejo.com.br</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center">
+                  <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-nosso-blue-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-sm font-medium text-gray-700">Horário de atendimento</h4>
+                    <p class="text-nosso-blue-700">Segunda a Sexta: 8h às 18h</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-nosso-blue-700 mb-4">Siga-nos nas redes sociais</h3>
+              <div class="flex space-x-4">
+                <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full bg-nosso-blue-600 hover:bg-nosso-blue-700 text-white transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                  </svg>
+                </a>
+                <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full bg-nosso-blue-600 hover:bg-nosso-blue-700 text-white transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                </a>
+                <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full bg-nosso-blue-600 hover:bg-nosso-blue-700 text-white transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                  </svg>
+                </a>
+                <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full bg-nosso-blue-600 hover:bg-nosso-blue-700 text-white transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-nosso-blue-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-6">
+              <div class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-nosso-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2" />
+                </svg>
+                <div class="absolute -top-1 -right-1 w-3 h-3 bg-nosso-yellow-300 rounded-full animate-pulse"></div>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-xl font-bold">NOSSO</span>
+                <span class="text-xs -mt-1">ATACAREJO</span>
+              </div>
+            </div>
+            <p class="text-gray-400 mb-4">
+              Há mais de 15 anos oferecendo os melhores preços em atacado e varejo em toda nossa região.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-white hover:text-nosso-yellow-400 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                </svg>
+              </a>
+              <a href="#" class="text-white hover:text-nosso-yellow-400 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+              <a href="#" class="text-white hover:text-nosso-yellow-400 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                </svg>
+              </a>
+              <a href="#" class="text-white hover:text-nosso-yellow-400 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-lg mb-6">Links Rápidos</h3>
+            <ul class="space-y-3">
+              <li><a href="#hero" class="text-gray-400 hover:text-white transition-colors duration-300">Início</a></li>
+              <li><a href="#sobre" class="text-gray-400 hover:text-white transition-colors duration-300">Sobre Nós</a></li>
+              <li><a href="#ofertas" class="text-gray-400 hover:text-white transition-colors duration-300">Ofertas</a></li>
+              <li><a href="#localizacao" class="text-gray-400 hover:text-white transition-colors duration-300">Nossas Lojas</a></li>
+              <li><a href="#contato" class="text-gray-400 hover:text-white transition-colors duration-300">Contato</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-lg mb-6">Contato</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-yellow-400 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="text-gray-400">Rua Principal, 123, Centro, Limoeiro do Norte - CE</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-yellow-400 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span class="text-gray-400">(88) 3423-0000</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-nosso-yellow-400 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span class="text-gray-400">contato@nossoatacarejo.com.br</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-lg mb-6">Horário de Funcionamento</h3>
+            <ul class="space-y-3">
+              <li class="text-gray-400">
+                <span class="block font-medium">Lojas:</span>
+                Segunda a Sábado: 8h às 20h<br>
+                Domingo: 8h às 12h
+              </li>
+              <li class="text-gray-400">
+                <span class="block font-medium">Administrativo:</span>
+                Segunda a Sexta: 8h às 18h
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            &copy; 2025 Nosso Atacarejo. Todos os direitos reservados.
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Política de Privacidade</a>
+            <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Termos de Uso</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Simple JavaScript for mobile menu toggle -->
+    <script>
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
