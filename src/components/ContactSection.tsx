@@ -13,7 +13,10 @@ import {
   Clock,
   Send,
   Instagram,
-  Facebook
+  Facebook,
+  CheckCircle,
+  User,
+  Building2
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -25,6 +28,7 @@ const ContactSection = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -32,12 +36,18 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
     toast({
-      title: "Mensagem enviada!",
-      description: "Obrigado pelo contato. Retornaremos em breve!",
+      title: "Mensagem enviada com sucesso!",
+      description: "Retornaremos seu contato em até 24 horas.",
     });
+    
     setFormData({
       name: '',
       email: '',
@@ -45,251 +55,326 @@ const ContactSection = () => {
       subject: '',
       message: ''
     });
+    setIsSubmitting(false);
   };
 
-  const contactInfo = [
+  const contactMethods = [
     {
-      icon: <Phone className="w-6 h-6 text-nosso-yellow-500" />,
+      icon: <Phone className="w-5 h-5" />,
       title: "Telefones",
-      details: [
-        "Limoeiro do Norte: (88) 3423-1234",
-        "Pau dos Ferros: (84) 3351-5678",
-        "São Miguel: (84) 3352-9876"
-      ]
+      subtitle: "Ligue para qualquer uma das lojas",
+      items: [
+        { label: "Limoeiro do Norte", value: "(88) 3423-1234", highlight: true },
+        { label: "Pau dos Ferros", value: "(84) 3351-5678" },
+        { label: "São Miguel", value: "(84) 3352-9876" }
+      ],
+      color: "text-nosso-blue-600"
     },
     {
-      icon: <Mail className="w-6 h-6 text-nosso-yellow-500" />,
-      title: "E-mail",
-      details: [
-        "contato@nossoatacarejo.com.br",
-        "vendas@nossoatacarejo.com.br"
-      ]
+      icon: <Mail className="w-5 h-5" />,
+      title: "E-mails",
+      subtitle: "Envie sua mensagem diretamente",
+      items: [
+        { label: "Atendimento Geral", value: "contato@nossoatacarejo.com.br", highlight: true },
+        { label: "Vendas & Parcerias", value: "vendas@nossoatacarejo.com.br" }
+      ],
+      color: "text-nosso-yellow-600"
     },
     {
-      icon: <Clock className="w-6 h-6 text-nosso-yellow-500" />,
-      title: "Horário de Funcionamento",
-      details: [
-        "Segunda a Sábado: 7h às 21h",
-        "Domingo: 7h às 18h"
-      ]
-    },
-    {
-      icon: <MessageCircle className="w-6 h-6 text-nosso-yellow-500" />,
+      icon: <MessageCircle className="w-5 h-5" />,
       title: "WhatsApp",
-      details: [
-        "(88) 99999-1234",
-        "Atendimento rápido e personalizado"
-      ]
+      subtitle: "Atendimento rápido e personalizado",
+      items: [
+        { label: "Atendimento 24h", value: "(88) 99999-1234", highlight: true },
+        { label: "Suporte Técnico", value: "(88) 99999-5678" }
+      ],
+      color: "text-green-600"
     }
   ];
 
+  const businessHours = [
+    { day: "Segunda a Sexta", hours: "7h às 21h" },
+    { day: "Sábados", hours: "7h às 21h" },
+    { day: "Domingos", hours: "7h às 18h" }
+  ];
+
   return (
-    <section id="contato" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-nosso-blue-900 mb-6">
+    <section id="contato" className="py-20 bg-gradient-to-br from-gray-50 via-white to-nosso-blue-50/30">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header Section */}
+        <div className="text-center mb-16 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 bg-nosso-yellow-100 text-nosso-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <MessageCircle className="w-4 h-4" />
             Entre em Contato
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-nosso-blue-900 mb-6 leading-tight">
+            Estamos Aqui Para
+            <span className="block text-nosso-yellow-500">Te Atender</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Estamos aqui para te atender! Entre em contato conosco ou visite uma de nossas lojas.
+          <p className="text-xl text-gray-600 leading-relaxed">
+            Nossa equipe está sempre pronta para ajudar. Escolha a forma de contato 
+            que for mais conveniente para você.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Informações de Contato */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-nosso-blue-900 mb-6">
-                Fale Conosco
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-16">
+          {/* Contact Methods */}
+          <div className="xl:col-span-1 space-y-6">
+            <div className="text-center xl:text-left mb-8">
+              <h3 className="text-2xl font-bold text-nosso-blue-900 mb-3">
+                Formas de Contato
               </h3>
-              <p className="text-gray-600 mb-8">
-                Nossa equipe está sempre pronta para ajudar você. Entre em contato 
-                através de qualquer um dos canais abaixo.
+              <p className="text-gray-600">
+                Escolha o canal que preferir para falar conosco
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {contactInfo.map((info, index) => (
-                <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <div className="w-12 h-12 bg-nosso-blue-100 rounded-full flex items-center justify-center mr-4">
-                        {info.icon}
-                      </div>
-                      <h4 className="text-lg font-semibold text-nosso-blue-900">
-                        {info.title}
+            {contactMethods.map((method, index) => (
+              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 flex items-center justify-center ${method.color} group-hover:scale-110 transition-transform duration-300`}>
+                      {method.icon}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-lg font-semibold text-nosso-blue-900 mb-1">
+                        {method.title}
                       </h4>
+                      <p className="text-sm text-gray-500 mb-3">
+                        {method.subtitle}
+                      </p>
+                      <div className="space-y-2">
+                        {method.items.map((item, idx) => (
+                          <div key={idx} className={`${item.highlight ? 'bg-nosso-blue-50 p-2 rounded-lg' : ''}`}>
+                            <p className="text-xs text-gray-500 uppercase tracking-wide">
+                              {item.label}
+                            </p>
+                            <p className={`font-medium ${item.highlight ? 'text-nosso-blue-700' : 'text-gray-700'}`}>
+                              {item.value}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      {info.details.map((detail, idx) => (
-                        <p key={idx} className="text-gray-600 text-sm">
-                          {detail}
-                        </p>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
 
-            {/* Redes Sociais */}
-            <Card className="border-0 shadow-lg">
+            {/* Business Hours */}
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-nosso-blue-700 to-nosso-blue-800 text-white">
               <CardContent className="p-6">
-                <h4 className="text-lg font-semibold text-nosso-blue-900 mb-4">
-                  Nos acompanhe nas redes sociais
-                </h4>
-                <div className="flex space-x-4">
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="border-nosso-blue-500 text-nosso-blue-700 hover:bg-nosso-blue-50"
-                  >
-                    <Instagram className="w-5 h-5 mr-2" />
-                    Instagram
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="border-nosso-blue-500 text-nosso-blue-700 hover:bg-nosso-blue-50"
-                  >
-                    <Facebook className="w-5 h-5 mr-2" />
-                    Facebook
-                  </Button>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-nosso-yellow-300" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold">Horário de Funcionamento</h4>
+                    <p className="text-blue-200 text-sm">Todas as nossas lojas</p>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-4">
-                  Fique por dentro das nossas promoções e novidades!
-                </p>
+                <div className="space-y-3">
+                  {businessHours.map((schedule, index) => (
+                    <div key={index} className="flex justify-between items-center py-2 border-b border-white/10 last:border-0">
+                      <span className="text-blue-100">{schedule.day}</span>
+                      <span className="text-white font-medium">{schedule.hours}</span>
+                    </div>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Formulário de Contato */}
-          <Card className="border-0 shadow-lg">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-nosso-blue-900 mb-6">
-                Envie uma Mensagem
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="name" className="text-nosso-blue-900 font-medium">
-                      Nome Completo *
+          {/* Contact Form */}
+          <div className="xl:col-span-2">
+            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl font-bold text-nosso-blue-900 mb-3">
+                    Envie uma Mensagem
+                  </h3>
+                  <p className="text-gray-600">
+                    Preencha o formulário abaixo e retornaremos em breve
+                  </p>
+                </div>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                        <User className="w-4 h-4" />
+                        Nome Completo *
+                      </Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="h-12 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
+                        placeholder="Digite seu nome completo"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                        <Phone className="w-4 h-4" />
+                        Telefone
+                      </Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="h-12 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
+                        placeholder="(00) 00000-0000"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                      <Mail className="w-4 h-4" />
+                      E-mail *
                     </Label>
                     <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="mt-1 border-gray-300 focus:border-nosso-blue-500"
-                      placeholder="Seu nome completo"
+                      className="h-12 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
+                      placeholder="seu@email.com"
                     />
                   </div>
-                  
-                  <div>
-                    <Label htmlFor="phone" className="text-nosso-blue-900 font-medium">
-                      Telefone
+
+                  <div className="space-y-2">
+                    <Label htmlFor="subject" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                      <Building2 className="w-4 h-4" />
+                      Assunto *
                     </Label>
                     <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      value={formData.subject}
                       onChange={handleInputChange}
-                      className="mt-1 border-gray-300 focus:border-nosso-blue-500"
-                      placeholder="(00) 00000-0000"
+                      required
+                      className="h-12 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
+                      placeholder="Sobre o que você gostaria de falar?"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <Label htmlFor="email" className="text-nosso-blue-900 font-medium">
-                    E-mail *
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 border-gray-300 focus:border-nosso-blue-500"
-                    placeholder="seu@email.com"
-                  />
-                </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                      <MessageCircle className="w-4 h-4" />
+                      Mensagem *
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      rows={5}
+                      className="border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 resize-none transition-colors"
+                      placeholder="Escreva sua mensagem aqui..."
+                    />
+                  </div>
 
-                <div>
-                  <Label htmlFor="subject" className="text-nosso-blue-900 font-medium">
-                    Assunto *
-                  </Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 border-gray-300 focus:border-nosso-blue-500"
-                    placeholder="Sobre o que você gostaria de falar?"
-                  />
-                </div>
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    disabled={isSubmitting}
+                    className="w-full h-14 bg-gradient-to-r from-nosso-yellow-400 to-nosso-yellow-500 text-nosso-blue-900 hover:from-nosso-yellow-300 hover:to-nosso-yellow-400 font-semibold text-lg transition-all duration-300 disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-5 h-5 border-2 border-nosso-blue-900 border-t-transparent rounded-full animate-spin"></div>
+                        Enviando...
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <Send className="w-5 h-5" />
+                        Enviar Mensagem
+                      </div>
+                    )}
+                  </Button>
+                </form>
 
-                <div>
-                  <Label htmlFor="message" className="text-nosso-blue-900 font-medium">
-                    Mensagem *
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    className="mt-1 border-gray-300 focus:border-nosso-blue-500 resize-none"
-                    placeholder="Escreva sua mensagem aqui..."
-                  />
+                <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-green-800 mb-1">
+                        Resposta Garantida
+                      </p>
+                      <p className="text-sm text-green-700">
+                        Retornamos todos os contatos em até 24 horas. Para atendimento 
+                        imediato, utilize nosso WhatsApp.
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
 
+        {/* Social Media & Career Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Social Media */}
+          <Card className="border-0 shadow-lg bg-white">
+            <CardContent className="p-8 text-center">
+              <h4 className="text-2xl font-bold text-nosso-blue-900 mb-4">
+                Nos Acompanhe
+              </h4>
+              <p className="text-gray-600 mb-6">
+                Fique por dentro das nossas promoções e novidades
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-nosso-yellow-400 text-nosso-blue-900 hover:bg-nosso-yellow-300 font-semibold"
+                  variant="outline" 
+                  size="lg"
+                  className="border-2 border-nosso-blue-500 text-nosso-blue-700 hover:bg-nosso-blue-50 hover:border-nosso-blue-600 transition-all duration-300"
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  Enviar Mensagem
+                  <Instagram className="w-5 h-5 mr-2" />
+                  @nossoatacarejo
                 </Button>
-              </form>
-
-              <div className="mt-6 p-4 bg-nosso-blue-50 rounded-lg">
-                <p className="text-sm text-nosso-blue-800">
-                  <strong>Dica:</strong> Para um atendimento mais rápido, entre em contato 
-                  via WhatsApp ou ligue diretamente para a loja de sua preferência.
-                </p>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-2 border-nosso-blue-500 text-nosso-blue-700 hover:bg-nosso-blue-50 hover:border-nosso-blue-600 transition-all duration-300"
+                >
+                  <Facebook className="w-5 h-5 mr-2" />
+                  Nosso Atacarejo
+                </Button>
               </div>
             </CardContent>
           </Card>
-        </div>
 
-        {/* Seção de Trabalhe Conosco */}
-        <div className="mt-16">
-          <Card className="border-0 shadow-lg bg-gradient-to-r from-nosso-blue-700 to-nosso-blue-800 text-white">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-3xl font-bold mb-4">
+          {/* Career Section */}
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-nosso-blue-700 via-nosso-blue-800 to-nosso-blue-900 text-white overflow-hidden relative">
+            <CardContent className="p-8 relative z-10">
+              <h4 className="text-2xl font-bold mb-4">
                 Trabalhe Conosco
-              </h3>
-              <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                Faça parte da nossa equipe! Estamos sempre em busca de pessoas 
-                dedicadas e comprometidas para crescer junto conosco.
+              </h4>
+              <p className="text-blue-100 mb-6 leading-relaxed">
+                Faça parte da nossa equipe! Oportunidades de crescimento 
+                em um ambiente colaborativo e dinâmico.
               </p>
               <Button 
                 size="lg" 
-                className="bg-nosso-yellow-400 text-nosso-blue-900 hover:bg-nosso-yellow-300 font-semibold"
+                className="bg-nosso-yellow-400 text-nosso-blue-900 hover:bg-nosso-yellow-300 font-semibold transition-all duration-300 hover:scale-105"
               >
                 Ver Vagas Disponíveis
               </Button>
             </CardContent>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-nosso-yellow-400/10 rounded-full -translate-y-16 translate-x-16"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-nosso-yellow-400/10 rounded-full translate-y-12 -translate-x-12"></div>
           </Card>
         </div>
       </div>
