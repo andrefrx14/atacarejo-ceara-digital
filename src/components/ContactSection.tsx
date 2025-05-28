@@ -99,29 +99,29 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contato" className="py-20 bg-gradient-to-br from-gray-50 via-white to-nosso-blue-50/30">
+    <section id="contato" className="py-12 bg-gradient-to-br from-gray-50 via-white to-nosso-blue-50/30">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header Section */}
-        <div className="text-center mb-16 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-nosso-yellow-100 text-nosso-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+        <div className="text-center mb-12 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 bg-nosso-yellow-100 text-nosso-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <MessageCircle className="w-4 h-4" />
             Entre em Contato
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-nosso-blue-900 mb-6 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-nosso-blue-900 mb-4 leading-tight">
             Estamos Aqui Para
             <span className="block text-nosso-yellow-500">Te Atender</span>
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed">
             Nossa equipe está sempre pronta para ajudar. Escolha a forma de contato 
             que for mais conveniente para você.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-12">
           {/* Contact Methods */}
-          <div className="xl:col-span-1 space-y-6">
-            <div className="text-center xl:text-left mb-8">
-              <h3 className="text-2xl font-bold text-nosso-blue-900 mb-3">
+          <div className="xl:col-span-1 space-y-4">
+            <div className="text-center xl:text-left mb-6">
+              <h3 className="text-xl font-bold text-nosso-blue-900 mb-2">
                 Formas de Contato
               </h3>
               <p className="text-gray-600">
@@ -131,25 +131,25 @@ const ContactSection = () => {
 
             {contactMethods.map((method, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 flex items-center justify-center ${method.color} group-hover:scale-110 transition-transform duration-300`}>
+                <CardContent className="p-4">
+                  <div className="flex items-start gap-3">
+                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 flex items-center justify-center ${method.color} group-hover:scale-110 transition-transform duration-300`}>
                       {method.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-lg font-semibold text-nosso-blue-900 mb-1">
+                      <h4 className="text-base font-semibold text-nosso-blue-900 mb-1">
                         {method.title}
                       </h4>
-                      <p className="text-sm text-gray-500 mb-3">
+                      <p className="text-xs text-gray-500 mb-2">
                         {method.subtitle}
                       </p>
-                      <div className="space-y-2">
+                      <div className="space-y-1">
                         {method.items.map((item, idx) => (
                           <div key={idx} className={`${item.highlight ? 'bg-nosso-blue-50 p-2 rounded-lg' : ''}`}>
                             <p className="text-xs text-gray-500 uppercase tracking-wide">
                               {item.label}
                             </p>
-                            <p className={`font-medium ${item.highlight ? 'text-nosso-blue-700' : 'text-gray-700'}`}>
+                            <p className={`text-sm font-medium ${item.highlight ? 'text-nosso-blue-700' : 'text-gray-700'}`}>
                               {item.value}
                             </p>
                           </div>
@@ -163,21 +163,21 @@ const ContactSection = () => {
 
             {/* Business Hours */}
             <Card className="border-0 shadow-lg bg-gradient-to-br from-nosso-blue-700 to-nosso-blue-800 text-white">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-nosso-yellow-300" />
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                    <Clock className="w-4 h-4 text-nosso-yellow-300" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold">Horário de Funcionamento</h4>
-                    <p className="text-blue-200 text-sm">Todas as nossas lojas</p>
+                    <h4 className="text-base font-semibold">Horário de Funcionamento</h4>
+                    <p className="text-blue-200 text-xs">Todas as nossas lojas</p>
                   </div>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {businessHours.map((schedule, index) => (
-                    <div key={index} className="flex justify-between items-center py-2 border-b border-white/10 last:border-0">
-                      <span className="text-blue-100">{schedule.day}</span>
-                      <span className="text-white font-medium">{schedule.hours}</span>
+                    <div key={index} className="flex justify-between items-center py-1 border-b border-white/10 last:border-0">
+                      <span className="text-blue-100 text-sm">{schedule.day}</span>
+                      <span className="text-white font-medium text-sm">{schedule.hours}</span>
                     </div>
                   ))}
                 </div>
@@ -188,9 +188,9 @@ const ContactSection = () => {
           {/* Contact Form */}
           <div className="xl:col-span-2">
             <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <div className="text-center mb-8">
-                  <h3 className="text-3xl font-bold text-nosso-blue-900 mb-3">
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-nosso-blue-900 mb-2">
                     Envie uma Mensagem
                   </h3>
                   <p className="text-gray-600">
@@ -198,10 +198,10 @@ const ContactSection = () => {
                   </p>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <Label htmlFor="name" className="text-nosso-blue-900 font-medium flex items-center gap-2 text-sm">
                         <User className="w-4 h-4" />
                         Nome Completo *
                       </Label>
@@ -212,13 +212,13 @@ const ContactSection = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="h-12 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
+                        className="h-10 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
                         placeholder="Digite seu nome completo"
                       />
                     </div>
                     
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                    <div className="space-y-1">
+                      <Label htmlFor="phone" className="text-nosso-blue-900 font-medium flex items-center gap-2 text-sm">
                         <Phone className="w-4 h-4" />
                         Telefone
                       </Label>
@@ -228,14 +228,14 @@ const ContactSection = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="h-12 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
+                        className="h-10 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
                         placeholder="(00) 00000-0000"
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                  <div className="space-y-1">
+                    <Label htmlFor="email" className="text-nosso-blue-900 font-medium flex items-center gap-2 text-sm">
                       <Mail className="w-4 h-4" />
                       E-mail *
                     </Label>
@@ -246,13 +246,13 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="h-12 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
+                      className="h-10 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
                       placeholder="seu@email.com"
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="subject" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                  <div className="space-y-1">
+                    <Label htmlFor="subject" className="text-nosso-blue-900 font-medium flex items-center gap-2 text-sm">
                       <Building2 className="w-4 h-4" />
                       Assunto *
                     </Label>
@@ -263,13 +263,13 @@ const ContactSection = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="h-12 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
+                      className="h-10 border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 transition-colors"
                       placeholder="Sobre o que você gostaria de falar?"
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-nosso-blue-900 font-medium flex items-center gap-2">
+                  <div className="space-y-1">
+                    <Label htmlFor="message" className="text-nosso-blue-900 font-medium flex items-center gap-2 text-sm">
                       <MessageCircle className="w-4 h-4" />
                       Mensagem *
                     </Label>
@@ -279,7 +279,7 @@ const ContactSection = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      rows={5}
+                      rows={4}
                       className="border-gray-300 focus:border-nosso-blue-500 focus:ring-nosso-blue-500 resize-none transition-colors"
                       placeholder="Escreva sua mensagem aqui..."
                     />
@@ -289,30 +289,30 @@ const ContactSection = () => {
                     type="submit" 
                     size="lg" 
                     disabled={isSubmitting}
-                    className="w-full h-14 bg-gradient-to-r from-nosso-yellow-400 to-nosso-yellow-500 text-nosso-blue-900 hover:from-nosso-yellow-300 hover:to-nosso-yellow-400 font-semibold text-lg transition-all duration-300 disabled:opacity-50"
+                    className="w-full h-12 bg-gradient-to-r from-nosso-yellow-400 to-nosso-yellow-500 text-nosso-blue-900 hover:from-nosso-yellow-300 hover:to-nosso-yellow-400 font-semibold transition-all duration-300 disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 border-2 border-nosso-blue-900 border-t-transparent rounded-full animate-spin"></div>
+                        <div className="w-4 h-4 border-2 border-nosso-blue-900 border-t-transparent rounded-full animate-spin"></div>
                         Enviando...
                       </div>
                     ) : (
                       <div className="flex items-center gap-2">
-                        <Send className="w-5 h-5" />
+                        <Send className="w-4 h-4" />
                         Enviar Mensagem
                       </div>
                     )}
                   </Button>
                 </form>
 
-                <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-green-800 mb-1">
                         Resposta Garantida
                       </p>
-                      <p className="text-sm text-green-700">
+                      <p className="text-xs text-green-700">
                         Retornamos todos os contatos em até 24 horas. Para atendimento 
                         imediato, utilize nosso WhatsApp.
                       </p>
@@ -325,31 +325,31 @@ const ContactSection = () => {
         </div>
 
         {/* Social Media & Career Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Social Media */}
           <Card className="border-0 shadow-lg bg-white">
-            <CardContent className="p-8 text-center">
-              <h4 className="text-2xl font-bold text-nosso-blue-900 mb-4">
+            <CardContent className="p-6 text-center">
+              <h4 className="text-xl font-bold text-nosso-blue-900 mb-3">
                 Nos Acompanhe
               </h4>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-4">
                 Fique por dentro das nossas promoções e novidades
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button 
                   variant="outline" 
-                  size="lg"
+                  size="default"
                   className="border-2 border-nosso-blue-500 text-nosso-blue-700 hover:bg-nosso-blue-50 hover:border-nosso-blue-600 transition-all duration-300"
                 >
-                  <Instagram className="w-5 h-5 mr-2" />
+                  <Instagram className="w-4 h-4 mr-2" />
                   @nossoatacarejo
                 </Button>
                 <Button 
                   variant="outline" 
-                  size="lg"
+                  size="default"
                   className="border-2 border-nosso-blue-500 text-nosso-blue-700 hover:bg-nosso-blue-50 hover:border-nosso-blue-600 transition-all duration-300"
                 >
-                  <Facebook className="w-5 h-5 mr-2" />
+                  <Facebook className="w-4 h-4 mr-2" />
                   Nosso Atacarejo
                 </Button>
               </div>
@@ -358,16 +358,16 @@ const ContactSection = () => {
 
           {/* Career Section */}
           <Card className="border-0 shadow-lg bg-gradient-to-br from-nosso-blue-700 via-nosso-blue-800 to-nosso-blue-900 text-white overflow-hidden relative">
-            <CardContent className="p-8 relative z-10">
-              <h4 className="text-2xl font-bold mb-4">
+            <CardContent className="p-6 relative z-10">
+              <h4 className="text-xl font-bold mb-3">
                 Trabalhe Conosco
               </h4>
-              <p className="text-blue-100 mb-6 leading-relaxed">
+              <p className="text-blue-100 mb-4 leading-relaxed">
                 Faça parte da nossa equipe! Oportunidades de crescimento 
                 em um ambiente colaborativo e dinâmico.
               </p>
               <Button 
-                size="lg" 
+                size="default" 
                 className="bg-nosso-yellow-400 text-nosso-blue-900 hover:bg-nosso-yellow-300 font-semibold transition-all duration-300 hover:scale-105"
               >
                 Ver Vagas Disponíveis
