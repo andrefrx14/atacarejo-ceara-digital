@@ -95,7 +95,109 @@
     <div id="toast-container"></div>
 
     <!-- Jamilly Carla -->
-    
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <div class="relative">
+              <a href="#hero">
+              <img src="/atacarejo-ceara-digital-main/src/logos/Vector sem eltra.svg" class="w-16" alt="">
+              </a>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden lg:flex bg-white rounded-full shadow-lg px-6 py-2">
+            <div class="flex space-x-6">
+              <a href="#ofertas" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Ofertas
+              </a>
+              <a href="#localizacao" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Nossas lojas
+              </a>
+              <a href="#sobre" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Nossa história
+              </a>
+              <a href="#trabalhe" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Trabalhe conosco
+              </a>
+              <a href="#contato" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-1 rounded-full hover:bg-nosso-blue-50">
+                Fale conosco
+              </a>
+            </div>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button id="menuBtn" class="lg:hidden text-nosso-blue-700 hover:text-nosso-blue-900 p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobileMenu" class="hidden lg:hidden mt-4 bg-white rounded-lg shadow-lg p-4">
+          <div class="flex flex-col space-y-3">
+            <a href="#ofertas" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Ofertas
+            </a>
+            <a href="#localizacao" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Nossas lojas
+            </a>
+            <a href="#sobre" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Nossa história
+            </a>
+            <a href="#contato" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Trabalhe conosco
+            </a>
+            <a href="#contato" class="text-nosso-blue-700 hover:text-nosso-blue-900 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-nosso-blue-50 text-left">
+              Fale conosco
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-28 lg:pt-32 pb-16 md:pb-24 bg-gradient-to-r from-nosso-blue-800 to-nosso-blue-600 text-white">
+      <div class="container mx-auto px-4 md:px-8">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="w-full md:w-1/2 order-2 md:order-1">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4">
+              <span class="text-nosso-yellow-400">Nosso Atacarejo</span>, 
+              <br />o melhor para o seu dia a dia
+            </h1>
+            <p class="text-lg opacity-90 mb-8">
+              Há mais de 15 anos oferecendo os melhores preços em atacado e varejo em toda nossa região.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#ofertas" class="inline-flex items-center justify-center bg-nosso-yellow-400 hover:bg-nosso-yellow-500 text-nosso-blue-900 font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                Ver ofertas
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+              <a href="#localizacao" class="inline-flex items-center justify-center border border-white hover:bg-white/10 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
+                Nossas lojas
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 mb-8 md:mb-0 order-1 md:order-2 flex justify-center md:justify-end">
+            <div class="w-full max-w-lg relative">
+              <img src="/atacarejo-ceara-digital-main/src/logos/hero.png" alt="Nosso Atacarejo" class="rounded-lg shadow-xl w-full h-auto object-cover" />
+              <div class="absolute inset-0 rounded-lg shadow-inner gradient-overlay opacity-30"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Galega -->
     
